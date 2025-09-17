@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import { neon } from '@neondatabase/serverless';
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: Request) {
   const sql = neon(process.env.DATABASE_URL!);
-  const id = params.id;
+
+  // Extract id from the URL
+  const { pathname } = new URL(request.url);
+  const parts = pathname.split('/');
+  const id = parts[parts.length - 2]; // [id] is before 'download'
 
   // Fetch the file from the database
   const result = await sql.query('SELECT file FROM pdf_files WHERE id = $1', [id]);

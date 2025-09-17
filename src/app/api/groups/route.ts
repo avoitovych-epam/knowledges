@@ -6,6 +6,6 @@ export async function GET() {
   // Query for all unique groups
   const result = await sql.query('SELECT DISTINCT "group" FROM pdf_files');
   // Extract group names into an array
-  const groups = result.map((row: Record<string, any>) => row.group);
+  const groups = result.map((row) => row.group);
   return NextResponse.json(groups);
 }

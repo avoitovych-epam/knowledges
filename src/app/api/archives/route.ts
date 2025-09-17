@@ -12,8 +12,8 @@ export async function GET(request: Request) {
   const sql = neon(process.env.DATABASE_URL!);
 
   // Build query parts
-  let where = [];
-  let values: any[] = [];
+  const where = [];
+  const values = [];
   let idx = 1;
 
   if (group) {
@@ -43,7 +43,7 @@ export async function GET(request: Request) {
   );
 
   // Add fileUrl if you have a download endpoint, otherwise just return metadata
-  const archivesWithUrl = docsResult.map((doc: any) => ({
+  const archivesWithUrl = docsResult.map((doc) => ({
     ...doc,
     fileUrl: `/api/archives/${doc.id}/download`,
   }));

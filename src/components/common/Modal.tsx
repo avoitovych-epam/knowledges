@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <Dialog open={isOpen} onClose={onClose} maxWidth="sm" fullWidth>
       {title && <DialogTitle>{title}</DialogTitle>}
-      <DialogContent className="h-26">{children}</DialogContent>
+      <DialogContent className="overflow-visible">{children}</DialogContent>
       <DialogActions className="mb-6 pr-6">{actions}</DialogActions>
     </Dialog>
   );
